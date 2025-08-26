@@ -1,0 +1,61 @@
+
+---
+
+## PRICING & REVENUE MODEL
+- Farmers pay **variable service fee** based on state average crop income—e.g:
+  - Punjab: ₹X/month  
+  - Bihar: ₹Y/month (lower)  
+  - Offer subsidized/reduced rate for marginal states.  
+- Deduct a platform commission of **5–10%** on rentals and deposit payments (clearly stated in T&C).  
+- Include subscription tiers:
+  - **Basic**: For marginal farmers, low fee.  
+  - **Standard**: Default nationwide.  
+  - **Premium**: Add value services (chat analytics, priority listing) priced higher.  
+- Enforce dynamic pricing logic in backend (`SubscriptionPlan` model + `pricingCalculator(region, cropType, MSP, GDP, profitMargin)`).  
+- All values in ₹ (INR), displayed with `Intl.NumberFormat("en-IN", ...)`.
+
+---
+
+## PRODUCTS & FINANCIAL FLOWS
+- Use **Stripe India** with currency `inr`, UPI, netbanking, card payments. Amounts in paise (₹500 → 50000).  
+- Tenant makes deposit (via Stripe Checkout), held in escrow. On acceptance, landlord receives payment minus commission.  
+- Subscription payments auto-renew monthly (Stripe subscription) with region-based tiers.  
+- Display projected annual subscription cost, compare to average farmer income to demonstrate affordability.  
+- Generate a profitability dashboard: platform revenue projections vs user income levels.
+
+---
+
+## LEGAL & UX DETAILS
+- Generate **Terms & Conditions** and **Consent forms**:
+  - Explain pricing, commissions, refunds, subscription auto-renewal, regional price differences, data usage, dispute resolution.  
+- At signup, require acknowledgment via checkbox: “I agree to the T&C and pricing based on my region.”  
+- Show tooltips with real-time stats (“Your estimated annual income: ₹XX, our fee: ₹YY — that’s Z% of income, aligned with national average”).
+
+---
+
+## FRONTEND & UX DESIGN
+- Clean, modern UI with dark/light mode toggle.  
+- Data-rich dashboards for farmers showing economics and projections.  
+- Info pages: “How we calculate your monthly fee — based on national income, MSP, regional GDP, and your state.”  
+- Animations (Framer Motion) for smooth onboarding and pricing tooltips.  
+- Accessibility compliance (ARIA, keyboard nav).
+
+---
+
+## DEVOPS & QA
+- CI Workflow: lint, tests, build (GitHub Actions).  
+- ESLint + Prettier enforced.  
+- Seed data including realistic subscriber plans (Punjab, Bihar, UP) with MSP/crop income values.  
+- README explaining industry-specific context (India GVA, budget schemes), how pricing was modeled, and deployment instructions.
+
+---
+
+## FINAL DELIVERABLE
+- Fully runnable project code in Replit structure (client + server + configs).  
+- Pricing logic in plain-language comments referenced to government data, /docs; accurate T&C, responsive UI.  
+- Metrics in dashboards: platform revenue vs farmer income; disclaimer referencing Economic Survey & Budget 2025.  
+- Everything formatted, documented, production-ready, with a Stark-level polish.
+
+---
+
+**End of prompt.**
