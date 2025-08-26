@@ -14,13 +14,13 @@ import { Search, Filter, MapPin } from "lucide-react";
 export default function Listings() {
   const { toast } = useToast();
   const [filters, setFilters] = useState({
-    state: "",
-    cropType: "",
+    state: "all",
+    cropType: "all", 
     minSize: "",
     maxSize: "",
     maxRent: "",
-    soilType: "",
-    irrigationType: "",
+    soilType: "all",
+    irrigationType: "all",
   });
 
   // Build query parameters
@@ -39,13 +39,13 @@ export default function Listings() {
 
   const clearFilters = () => {
     setFilters({
-      state: "",
-      cropType: "",
+      state: "all",
+      cropType: "all",
       minSize: "",
       maxSize: "",
       maxRent: "",
-      soilType: "",
-      irrigationType: "",
+      soilType: "all",
+      irrigationType: "all",
     });
   };
 
@@ -94,7 +94,7 @@ export default function Listings() {
                     <SelectValue placeholder="All States" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All States</SelectItem>
+                    <SelectItem value="all">All States</SelectItem>
                     {STATES.map((state) => (
                       <SelectItem key={state.value} value={state.value}>
                         {state.label}
@@ -111,7 +111,7 @@ export default function Listings() {
                     <SelectValue placeholder="Any Crop" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Any Crop</SelectItem>
+                    <SelectItem value="all">Any Crop</SelectItem>
                     {CROPS.map((crop) => (
                       <SelectItem key={crop} value={crop}>
                         {crop}
@@ -128,7 +128,7 @@ export default function Listings() {
                     <SelectValue placeholder="Any Soil Type" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">Any Soil Type</SelectItem>
+                    <SelectItem value="all">Any Soil Type</SelectItem>
                     {SOIL_TYPES.map((soil) => (
                       <SelectItem key={soil} value={soil}>
                         {soil}

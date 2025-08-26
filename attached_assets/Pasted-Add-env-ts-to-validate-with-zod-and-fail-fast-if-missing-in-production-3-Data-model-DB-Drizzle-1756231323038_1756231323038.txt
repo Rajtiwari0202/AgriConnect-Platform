@@ -1,0 +1,200 @@
+Add env.ts to validate with zod and fail fast if missing in production.
+
+3) Data model & DB (Drizzle ORM)
+
+Keep/convert to Drizzle with Postgres (prefer) or SQLite for dev:
+
+users (id, role: 'farmer'|'landowner', name, phone, email, district, state, language, kycStatus)
+
+listings (id, ownerId, acreage, soilType, irrigation, cropSuitability[], location {state, district}, rentPerAcre, notes, status)
+
+requests (id, listingId, farmerId, status: requested|accepted|rejected|in_escrow|active|completed)
+
+subscriptions (id, userId, plan: 'basic'|'pro'|'enterprise', status, currentPeriodStart, currentPeriodEnd, stripeCustomerId, stripeSubId, paymentMethodType)
+
+payments (id, userId, amount, currency='INR', purpose, status, providerRef, mode: upi|card|netbanking, invoiceUrl)
+
+escrows (id, requestId, amount, status: hold|released|refunded, provider='stripe_sim', captureId)
+
+messages (id, threadId, fromUserId, toUserId, body, attachments[], createdAt); threads (id, listingId?, participants[])
+
+schemes (id, title, description, link, eligibility, category)
+
+metrics_snapshots (id, key, value, source, capturedAt) // for economic dashboard
+
+Generate migrations and seed with a few listings + schemes (PM-KISAN, PMFBY, KCC).
+
+4) Payments (Stripe India) – one-time + subscriptions
+
+Goals: INR, support UPI, cards (incl. RuPay), net banking. Subscriptions w/ Indian compliance.
+
+Add Stripe backend:
+
+/api/payments/create-intent → accepts {amount,purpose,mode}; creates PaymentIntent with currency: 'inr' and payment_method_types: ['upi','card','netbanking'] (only include types enabled for the account); returns client_secret.
+
+/api/payments/webhook → handle payment_intent.succeeded, payment_intent.payment_failed, invoice.payment_succeeded, customer.subscription.updated|deleted.
+
+Subscriptions:
+
+Create Stripe Products/Prices (Basic/Pro/Enterprise monthly & annual). In dev, allow one-time checkout fallback if autopay not available.
+
+Frontend: Payment Element + plan selector; display supported methods contextually; currency INR everywhere.
+
+Invoices:
+
+For every successful payment or subscription invoice, generate a PDF invoice on the server (use pdfkit) and store path/url in payments.invoiceUrl.
+
+RBI e-mandate / UPI Autopay reality:
+
+If recurring autopay isn’t available for a chosen method, fallback to sending an invoice link for manual monthly payment and mark sub active for 30 days upon payment confirmation.
+
+Add test mode switch in UI; surface last 5 payment events in user dashboard.
+
+5) Escrow (simulated, compliance-aware)
+
+Implement simulated escrow with Stripe PaymentIntent manual capture:
+
+On request acceptance, create intent with capture_method: 'manual' (hold).
+
+On successful handover/milestone, capture; on failure/cancellation, cancel/refund.
+
+Persist to escrows table; expose routes: /api/escrow/hold, /api/escrow/capture, /api/escrow/refund.
+
+Add admin-only override endpoints.
+
+UI: Show escrow state on request timeline.
+
+(Note: real escrow in India requires regulated partners; we’re simulating now and labeling it clearly in UI & T&C.)
+
+6) Subscription plans (national, no state variation)
+
+Remove state-wise variation. Add three national tiers:
+
+Basic – smallholders; features: search, 5 messages/mo, 2 requests active, standard support.
+
+Pro – mid-scale; features: unlimited search, 50 messages/mo, 10 requests, basic analytics, PDF invoices.
+
+Enterprise – large landowners/co-ops; features: unlimited messaging, unlimited requests, priority support, CSV exports, multi-user seats (3).
+
+Support monthly & annual (annual ~2 months free).
+
+Show a small affordability widget: “This plan ≈ X% of avg monthly farm income” (use a static figure in settings you can update later).
+
+Implement free trial (7 days) with payment method capture required.
+
+7) Economic dashboard (farmer-first context)
+
+Add /dashboard/economy with cards + charts for:
+
+Latest Union Budget (Agri) – allocation summary (static JSON seed + link),
+
+PM-KISAN status bulletin (static fact),
+
+PMFBY awareness quick facts,
+
+Affordability: sub price vs estimated monthly agri household income; slider to simulate different farm sizes.
+
+Build this with Recharts and server /api/metrics reading from metrics_snapshots.
+
+Place a “data sources” tooltip (non-clickable in dev) pointing to official/public sources (keep as text now).
+
+8) Listings, search & request-to-rent
+
+Enhance Listing form: acreage, soilType, irrigation, cropSuitability (multi), rentPerAcre, district/state, geocoded location placeholder, notes.
+
+Search: by state, district, acreage range, soilType, irrigation, suitability, rent range.
+
+Request flow: request → accept/reject → escrow hold → active → capture/refund.
+
+Role-based access control: farmers request, landowners approve.
+
+9) Messaging (threaded + attachments)
+
+Create threads per farmer↔landowner conversation (per listing).
+
+Implement threaded messages (parentId optional) for replies.
+
+Attachments: allow image/pdf upload to /api/uploads saved to UPLOAD_DIR, return path; thumbnail preview in UI.
+
+Start with polling every 5s; leave TODO for Socket.IO later.
+
+10) Government schemes module
+
+Add page /schemes with filterable cards seeded with:
+
+PM-KISAN: direct income support (₹6,000/year; DBT).
+
+PMFBY: crop insurance basics & enrollment period.
+
+Kisan Credit Card (KCC): short-term credit line summary.
+
+For each: show eligibility, what docs needed, and official link button.
+
+Keep data as static JSON now; design for API replacement later.
+
+11) Terms, Privacy, Refunds (India-ready)
+
+Create /legal/terms, /legal/privacy, /legal/refunds pages and link in footer + during checkout.
+Terms (key points)
+
+Who we are, services overview, platform roles (farmer, landowner).
+
+Subscriptions: national plans; billing period; auto-renewal disclosure; how to cancel from dashboard; notice periods.
+
+Escrow: currently a simulated hold via PSP; not a bank escrow; final liability terms; dispute window; release/refund flow.
+
+Payments & GST: INR pricing; taxes extra if applicable; invoices provided.
+
+Prohibited use and account termination.
+
+Governing law: India; dispute resolution forum (e.g., courts in your city).
+Privacy (DPDP-aligned)
+
+Lawful basis = consent + performance of contract; explain what we collect (profile, contact, listing, payment metadata—not card/UPI numbers); purpose-limited, data minimization, retention, user rights (access, correction, deletion, grievance), contact email, grievance officer placeholder.
+Refunds
+
+Pro-rate subscription refunds where mandated; no refund after service use except as required; escrow refunds as per milestone failure/cancellation.
+
+(Add clear banner on checkout summarizing auto-renewal & cancellation in plain language.)
+
+12) Accessibility, performance, UI polish
+
+Tailwind + Shadcn UI; consistent font scale; mobile-first; WCAG AA contrast.
+
+Lazy-load heavy charts; code-split routes; skeleton loaders.
+
+Add Hindi stub via i18next (en, hi namespaces with 10–15 key strings; language toggle in footer).
+
+13) Security & reliability
+
+Validate all inputs with zod middleware.
+
+CORS locked to CLIENT_URL.
+
+Rate limit auth & payment routes.
+
+Store only Stripe IDs, never card/UPI data.
+
+Sanitise uploads (MIME/type/size) and serve from /uploads with safe filenames.
+
+Centralized error handler with structured logs.
+
+14) Testing & tooling
+
+Add Vitest/Jest unit tests for: pricing calculator, request flow state machine, payments controller (mock Stripe), escrow capture/refund transitions.
+
+Add Playwright smoke test: load home, create demo user, view pricing, start checkout (test mode).
+
+GitHub Actions: run lint + tests on PR.
+
+15) Product copy (farmer-first)
+
+Home hero: “Find & lease the right farmland. Pay safely. Clear terms.”
+
+Pricing page: 3 cards (Basic/Pro/Enterprise), INR, monthly/annual toggle, affordability note.
+
+Dashboard tooltips: explain why we show budget/scheme info.
+
+Transparency toggle: show approximate platform margin on sub plans (static % configurable).
+
+16) Acceptance criteria (checklist the agent must verify)

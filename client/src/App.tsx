@@ -9,6 +9,8 @@ import Auth from "@/pages/auth";
 import Listings from "@/pages/listings";
 import Dashboard from "@/pages/dashboard";
 import Pricing from "@/pages/pricing";
+import EconomicDashboard from "@/pages/economic-dashboard";
+import Schemes from "@/pages/schemes";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -19,6 +21,8 @@ function Router() {
       <Route path="/listings" component={Listings} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/pricing" component={Pricing} />
+      <Route path="/economics" component={EconomicDashboard} />
+      <Route path="/schemes" component={Schemes} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,42 +1,97 @@
-# Agricultural Platform - "Taking Care of Agricultural Roots Back Home"
+# Agricultural Platform - "AgriConnect"
 
 ## Project Overview
-A platform connecting tenant farmers with landowners featuring property listings, user profiles, secure payments, and real-time communication.
+A comprehensive Indian agricultural platform connecting tenant farmers with landowners featuring economic data integration, government schemes awareness, national subscription pricing, Stripe India payment processing, and farmer-friendly affordability models.
 
 ## Project Architecture
-- **Frontend**: React with Wouter routing, ShadCN UI components, TailwindCSS
-- **Backend**: Express.js with in-memory storage (MemStorage)
-- **Authentication**: JWT-based with Google OAuth
-- **Payments**: Stripe integration for deposits and recurring rent
-- **Real-time**: Socket.IO for messaging
-- **Styling**: TailwindCSS with dark/light mode support
+- **Frontend**: React with Wouter routing, ShadCN UI components, TailwindCSS, Recharts for data visualization
+- **Backend**: Express.js with enhanced in-memory storage, security middleware (Helmet, CORS, Rate Limiting)
+- **Authentication**: JWT-based with Passport.js, session management with secure secrets
+- **Payments**: Stripe India integration with UPI/Card/NetBanking, simulated escrow via manual capture
+- **Economic Dashboard**: Government budget data, farm income analysis, affordability calculations
+- **Government Integration**: PM-KISAN, PMFBY, KCC schemes with real application links
+- **Security**: Environment validation with Zod, production-grade middleware stack
+- **Styling**: TailwindCSS with Indian localization (en-IN, INR currency)
 
-## Core Features
-1. **User Management**: Farmers and landowners with separate dashboards
-2. **Land Listings**: CRUD operations with search and filtering
-3. **Tenancy Requests**: Request system with approval workflow
-4. **Payment System**: Stripe checkout for deposits and subscriptions
-5. **Messaging**: Real-time chat between farmers and landowners
-6. **Notifications**: Email and push notifications
+## Core Features - Enhanced
+1. **User Management**: KYC verification, Aadhaar/PAN integration, subscription tiers
+2. **Land Listings**: Comprehensive agricultural specifications (soil, irrigation, crops, legal docs)
+3. **National Subscription Plans**: Farmer-affordable pricing based on economic data (₹99-₹1999/month)
+4. **Payment System**: Stripe India with escrow protection, recurring subscriptions, invoice generation
+5. **Economic Dashboard**: Union Budget data, income analysis, platform metrics, affordability calculator
+6. **Government Schemes**: PM-KISAN, PMFBY, KCC integration with application guidance
+7. **Enhanced Messaging**: Threaded conversations, file attachments, read receipts
+8. **Security**: Environment validation, rate limiting, JWT authentication, role-based access
 
-## Data Models
-- **User**: Role-based (farmer, landowner, admin)
-- **Land**: Property details with location, size, type, pricing
-- **Request**: Tenancy requests with status tracking
-- **Transaction**: Payment records via Stripe
-- **Message**: Real-time messaging between users
+## Data Models - Comprehensive
+- **Enhanced User**: KYC status, farming experience, FPO membership, subscription management
+- **Enhanced Listing**: Soil specifications, irrigation details, legal documentation, crop suitability
+- **Tenancy Requests**: Contract terms, escrow integration, status workflow
+- **Payment Records**: Multi-purpose tracking (subscription, deposit, rent, commission)
+- **Escrow Management**: Simulated holding via Stripe manual capture
+- **Government Schemes**: Official data with application processes and deadlines
+- **Economic Metrics**: Dashboard analytics and historical data tracking
+
+## National Subscription Plans
+- **Basic Plan**: ₹99/month - Smallholder farmers (< 2 acres) - ≈1.2% of avg income
+- **Pro Plan**: ₹499/month - Mid-scale farms (2-10 acres) - ≈2.0% of avg income  
+- **Enterprise Plan**: ₹1999/month - Large operations (> 10 acres) - ≈2.7% of avg income
 
 ## User Preferences
-- Production-grade code with comprehensive features
-- Modern UI/UX with animations
-- Secure payment flow with escrow
-- Complete project structure with comments
+- TypeScript end-to-end with comprehensive type safety
+- INR currency with "en-IN" locale throughout the platform
+- Farmer-friendly explanations and government scheme integration
+- Security-first approach with environment validation
+- Comprehensive economic data integration for transparency
+- Production-grade architecture with proper error handling
 
-## Recent Changes
-- **August 26, 2025**: Successfully migrated from Replit Agent to standard Replit environment
-- Fixed missing package dependencies and imports
-- Resolved frontend CSS and TypeScript import errors
-- Added missing constants (STATES, CROPS, SOIL_TYPES, IRRIGATION_TYPES) with proper data structure
-- Backend server running successfully on port 5000 with functional API endpoints
-- Application now loads properly with working frontend-backend communication
-- Focus on security, scalability, and user experience
+## Recent Changes - August 26, 2025
+### Migration & Security Implementation
+- **Migration Complete**: Successfully migrated from Replit Agent to standard Replit environment
+- **Security Infrastructure**: Implemented comprehensive environment validation using Zod
+- **Authentication**: JWT and session management with secure secrets (SESSION_SECRET, JWT_SECRET)
+- **Middleware Stack**: Helmet security headers, CORS configuration, express rate limiting
+- **Express Configuration**: Trust proxy for production, body parsing limits, compression
+
+### Enhanced Data Architecture  
+- **Comprehensive Schema**: Created enhanced database schema with 12+ tables supporting full agricultural workflow
+- **User Management**: KYC verification, Aadhaar/PAN integration, subscription tracking, farming profiles
+- **Land Listings**: Detailed agricultural specifications including soil pH, irrigation systems, legal documentation
+- **Payment System**: Multi-purpose payment tracking with Stripe integration and escrow simulation
+- **Messaging**: Threaded conversations with file attachments and read receipts
+
+### Payment & Subscription System
+- **Stripe India Integration**: Payment intents, subscription management, webhook handling
+- **National Pricing**: Single nationwide pricing eliminating regional complexity
+- **Escrow Simulation**: Manual capture payments for secure land deal protection
+- **Affordability Model**: Income-based pricing recommendations using government agricultural data
+
+### Economic Dashboard & Government Integration
+- **Dashboard**: Union Budget 2025-26 data, farm income distribution, platform metrics
+- **Government Schemes**: PM-KISAN, PMFBY, KCC with real application links and eligibility criteria
+- **Affordability Calculator**: Dynamic pricing analysis based on farm size and estimated income
+- **Data Visualization**: Charts and graphs for economic data using Recharts library
+
+### Storage & Infrastructure
+- **Enhanced Storage**: Comprehensive in-memory storage supporting all features with TypeScript interfaces
+- **API Routes**: Payment processing, escrow management, schemes integration, dashboard metrics
+- **File Upload**: Multer configuration for agricultural documents and property images
+- **Validation Middleware**: Zod-based request validation for all API endpoints
+
+### Frontend Components & Pages
+- **Economic Dashboard**: Interactive data visualization with affordability calculations
+- **Government Schemes**: Searchable scheme database with application guidance
+- **Pricing Comparison**: National subscription plans with farmer-targeted messaging
+- **Enhanced Listings**: Fixed SelectItem value prop issues for proper form functionality
+
+## Technical Implementation Status
+- ✅ Environment validation and security middleware
+- ✅ Enhanced database schema with comprehensive agricultural data model
+- ✅ Payment system with Stripe India and escrow simulation
+- ✅ Economic dashboard with government budget integration
+- ✅ Government schemes awareness system
+- ✅ National subscription pricing with affordability analysis
+- ✅ Enhanced storage interface supporting all features
+- ✅ Frontend components with proper Indian localization
+- 🔄 Storage interface integration with existing routes (in progress)
+- 🔄 Full TypeScript error resolution (in progress)
