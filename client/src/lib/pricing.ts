@@ -191,9 +191,70 @@ export const governmentSchemes = {
   ]
 };
 
+// Constants for form data and filtering
+export const STATES = [
+  { value: "andhra-pradesh", label: "Andhra Pradesh", hindi: "आंध्र प्रदेश" },
+  { value: "arunachal-pradesh", label: "Arunachal Pradesh", hindi: "अरुणाचल प्रदेश" },
+  { value: "assam", label: "Assam", hindi: "असम" },
+  { value: "bihar", label: "Bihar", hindi: "बिहार" },
+  { value: "chhattisgarh", label: "Chhattisgarh", hindi: "छत्तीसगढ़" },
+  { value: "goa", label: "Goa", hindi: "गोवा" },
+  { value: "gujarat", label: "Gujarat", hindi: "गुजरात" },
+  { value: "haryana", label: "Haryana", hindi: "हरियाणा" },
+  { value: "himachal-pradesh", label: "Himachal Pradesh", hindi: "हिमाचल प्रदेश" },
+  { value: "jharkhand", label: "Jharkhand", hindi: "झारखंड" },
+  { value: "karnataka", label: "Karnataka", hindi: "कर्नाटक" },
+  { value: "kerala", label: "Kerala", hindi: "केरल" },
+  { value: "madhya-pradesh", label: "Madhya Pradesh", hindi: "मध्य प्रदेश" },
+  { value: "maharashtra", label: "Maharashtra", hindi: "महाराष्ट्र" },
+  { value: "manipur", label: "Manipur", hindi: "मणिपुर" },
+  { value: "meghalaya", label: "Meghalaya", hindi: "मेघालय" },
+  { value: "mizoram", label: "Mizoram", hindi: "मिजोरम" },
+  { value: "nagaland", label: "Nagaland", hindi: "नागालैंड" },
+  { value: "odisha", label: "Odisha", hindi: "ओडिशा" },
+  { value: "punjab", label: "Punjab", hindi: "पंजाब" },
+  { value: "rajasthan", label: "Rajasthan", hindi: "राजस्थान" },
+  { value: "sikkim", label: "Sikkim", hindi: "सिक्किम" },
+  { value: "tamil-nadu", label: "Tamil Nadu", hindi: "तमिल नाडु" },
+  { value: "telangana", label: "Telangana", hindi: "तेलंगाना" },
+  { value: "tripura", label: "Tripura", hindi: "त्रिपुरा" },
+  { value: "uttar-pradesh", label: "Uttar Pradesh", hindi: "उत्तर प्रदेश" },
+  { value: "uttarakhand", label: "Uttarakhand", hindi: "उत्तराखंड" },
+  { value: "west-bengal", label: "West Bengal", hindi: "पश्चिम बंगाल" }
+];
+
+export const CROPS = [
+  "Rice", "Wheat", "Maize", "Sugarcane", "Cotton", "Soybean", "Groundnut",
+  "Sunflower", "Sesame", "Mustard", "Potato", "Onion", "Tomato", "Chili",
+  "Turmeric", "Coriander", "Cumin", "Fenugreek", "Chickpea", "Pigeon Pea",
+  "Black Gram", "Green Gram", "Lentil", "Field Pea", "Banana", "Mango",
+  "Coconut", "Areca Nut", "Cardamom", "Pepper", "Ginger", "Tea", "Coffee"
+];
+
+export const SOIL_TYPES = [
+  "Alluvial", "Black Cotton", "Red", "Laterite", "Mountain", "Desert",
+  "Saline", "Peaty", "Forest"
+];
+
+export const IRRIGATION_TYPES = [
+  "Canal", "Tube Well", "Well", "Tank", "River", "Sprinkler", "Drip",
+  "Rainfed", "Lift Irrigation"
+];
+
+// Utility function to get plan features
+export const getPlanFeatures = (planId: string) => {
+  const plan = subscriptionTiers[planId as keyof typeof subscriptionTiers];
+  return plan ? plan.features : [];
+};
+
 export default {
   economicContext,
   subscriptionTiers,
   pricingUtils,
   governmentSchemes,
+  STATES,
+  CROPS,
+  SOIL_TYPES,
+  IRRIGATION_TYPES,
+  getPlanFeatures,
 };
