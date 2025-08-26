@@ -1,0 +1,665 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriConnect - Connecting Farmers & Landowners</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    'agri-primary': '#10B981',
+                    'agri-secondary': '#F59E0B',
+                    'agri-accent': '#14B8A6',
+                    'agri-muted': '#6B7280',
+                    'agri-bg': '#F9FAFB',
+                    'earth-brown': '#8B5A2B',
+                    'earth-green': '#22C55E'
+                },
+                fontFamily: {
+                    'inter': ['Inter', 'sans-serif']
+                }
+            }
+        }
+    };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/heroicons/2.0.13/heroicons.min.css">
+</head>
+<body class="font-inter bg-agri-bg">
+    <!-- @COMPONENT: Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-agri-primary rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 8.055V6a2 2 0 00-2-2H9a2 2 0 00-2 2v2.055"></path>
+                        </svg>
+                    </div>
+                    <span class="text-xl font-bold text-gray-900">AgriConnect</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#browse" class="text-gray-600 hover:text-agri-primary transition-colors">Browse Land</a>
+                    <a href="#how-it-works" class="text-gray-600 hover:text-agri-primary transition-colors">How It Works</a>
+                    <a href="#about" class="text-gray-600 hover:text-agri-primary transition-colors">About</a>
+                </div>
+                
+                <div class="flex items-center space-x-3">
+                    <button class="text-gray-600 hover:text-agri-primary transition-colors px-4 py-2 rounded-lg" data-event="click:handleLogin">Log In</button>
+                    <button class="bg-agri-primary text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors" data-event="click:handleSignup">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- @END_COMPONENT: Navigation -->
+
+    <!-- @COMPONENT: HeroSection -->
+    <section class="relative bg-gradient-to-br from-agri-primary to-emerald-700 text-white py-20">
+        <!-- A panoramic view of golden wheat fields stretching to the horizon at sunset -->
+        <div class="absolute inset-0 bg-black bg-opacity-30" style="background-image: url('https://images.unsplash.com/photo-1574943320219-553eb213f72d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080'); background-size: cover; background-position: center;"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    Taking Care of Agricultural <span class="text-agri-secondary">Roots</span> Back Home
+                </h1>
+                <p class="text-xl md:text-2xl mb-8 text-gray-100 leading-relaxed">
+                    Connect tenant farmers with landowners. Build sustainable agricultural partnerships that nurture the land and grow communities.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button class="bg-agri-secondary text-white px-8 py-4 rounded-lg font-semibold hover:bg-amber-500 transition-colors text-lg" data-event="click:handleFarmerSignup">I'm a Farmer</button>
+                    <button class="bg-white text-agri-primary px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 transition-colors text-lg border-2 border-white" data-event="click:handleLandownerSignup">I'm a Landowner</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: HeroSection -->
+
+    <!-- @COMPONENT: StatsSection -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-agri-primary mb-2" data-bind="stats.activeFarmers">1,247</div>
+                    <div class="text-gray-600">Active Tenant Farmers</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-agri-primary mb-2" data-bind="stats.availableLand">3,892</div>
+                    <div class="text-gray-600">Acres Available</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-agri-primary mb-2" data-bind="stats.successfulMatches">876</div>
+                    <div class="text-gray-600">Successful Partnerships</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: StatsSection -->
+
+    <!-- @COMPONENT: FeaturedListings -->
+    <section id="browse" class="py-20 bg-agri-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Land Listings</h2>
+                <p class="text-xl text-agri-muted max-w-2xl mx-auto">Discover prime agricultural land available for tenancy partnerships</p>
+            </div>
+
+            <!-- Search and Filter Bar -->
+            <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                <div class="flex flex-col lg:flex-row gap-4">
+                    <div class="flex-1">
+                        <input type="text" placeholder="Search by location, crop type, or keywords..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agri-primary focus:border-transparent" data-mock="true">
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <select class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agri-primary" data-mock="true">
+                            <option>All Crop Types</option>
+                            <option>Corn</option>
+                            <option>Wheat</option>
+                            <option>Soybeans</option>
+                            <option>Rice</option>
+                        </select>
+                        <select class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-agri-primary" data-mock="true">
+                            <option>All Sizes</option>
+                            <option>1-10 acres</option>
+                            <option>10-50 acres</option>
+                            <option>50+ acres</option>
+                        </select>
+                        <button class="bg-agri-primary text-white px-6 py-3 rounded-lg hover:bg-emerald-600 transition-colors" data-event="click:handleSearch">Search</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Listings Grid -->
+            <!-- @MAP: listings.map(listing => ( -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow" data-mock="true">
+                    <!-- Aerial view of a large cultivated farmland with neat crop rows -->
+                    <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500" alt="Farmland aerial view" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-gray-900" data-bind="listing.title">Johnson Family Farm</h3>
+                            <span class="bg-agri-primary text-white px-3 py-1 rounded-full text-sm">Available</span>
+                        </div>
+                        <p class="text-agri-muted mb-4 flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span data-bind="listing.location">Iowa, USA</span>
+                        </p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-agri-muted">Size:</span>
+                                <span class="font-medium" data-bind="listing.size">45 acres</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-agri-muted">Crop Type:</span>
+                                <span class="font-medium" data-bind="listing.cropType">Corn & Soybeans</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-agri-muted">Water Access:</span>
+                                <span class="font-medium text-agri-primary" data-bind="listing.water">Available</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-200">
+                            <div>
+                                <span class="text-2xl font-bold text-agri-primary" data-bind="listing.rent">$180</span>
+                                <span class="text-agri-muted">/acre/year</span>
+                            </div>
+                            <button class="bg-agri-primary text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors" data-event="click:viewListing">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow" data-mock="true">
+                    <!-- Rolling green hills with farmland and traditional red barn -->
+                    <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500" alt="Rolling farmland with red barn" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-gray-900" data-bind="listing.title">Heritage Valley Land</h3>
+                            <span class="bg-agri-primary text-white px-3 py-1 rounded-full text-sm">Available</span>
+                        </div>
+                        <p class="text-agri-muted mb-4 flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span data-bind="listing.location">Nebraska, USA</span>
+                        </p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-agri-muted">Size:</span>
+                                <span class="font-medium" data-bind="listing.size">72 acres</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-agri-muted">Crop Type:</span>
+                                <span class="font-medium" data-bind="listing.cropType">Wheat</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-agri-muted">Water Access:</span>
+                                <span class="font-medium text-agri-primary" data-bind="listing.water">Irrigation System</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-200">
+                            <div>
+                                <span class="text-2xl font-bold text-agri-primary" data-bind="listing.rent">$220</span>
+                                <span class="text-agri-muted">/acre/year</span>
+                            </div>
+                            <button class="bg-agri-primary text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors" data-event="click:viewListing">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow" data-mock="true">
+                    <!-- Vast rice paddy fields with neat geometric patterns -->
+                    <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500" alt="Rice paddy fields geometric patterns" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-3">
+                            <h3 class="text-xl font-semibold text-gray-900" data-bind="listing.title">Golden Rice Fields</h3>
+                            <span class="bg-agri-secondary text-white px-3 py-1 rounded-full text-sm">Premium</span>
+                        </div>
+                        <p class="text-agri-muted mb-4 flex items-center">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span data-bind="listing.location">California, USA</span>
+                        </p>
+                        <div class="space-y-2 mb-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-agri-muted">Size:</span>
+                                <span class="font-medium" data-bind="listing.size">28 acres</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-agri-muted">Crop Type:</span>
+                                <span class="font-medium" data-bind="listing.cropType">Rice</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-agri-muted">Water Access:</span>
+                                <span class="font-medium text-agri-primary" data-bind="listing.water">Flood Irrigation</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center pt-4 border-t border-gray-200">
+                            <div>
+                                <span class="text-2xl font-bold text-agri-primary" data-bind="listing.rent">$350</span>
+                                <span class="text-agri-muted">/acre/year</span>
+                            </div>
+                            <button class="bg-agri-primary text-white px-4 py-2 rounded-lg hover:bg-emerald-600 transition-colors" data-event="click:viewListing">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_MAP )) -->
+            
+            <div class="text-center mt-12">
+                <button class="bg-white text-agri-primary border-2 border-agri-primary px-8 py-3 rounded-lg font-semibold hover:bg-agri-primary hover:text-white transition-colors" data-event="click:viewAllListings">View All Listings</button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: FeaturedListings -->
+
+    <!-- @COMPONENT: HowItWorks -->
+    <section id="how-it-works" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">How AgriConnect Works</h2>
+                <p class="text-xl text-agri-muted max-w-2xl mx-auto">Simple steps to connect farmers with landowners and build lasting partnerships</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-16">
+                <!-- For Farmers -->
+                <div>
+                    <h3 class="text-2xl font-bold text-agri-primary mb-8">For Tenant Farmers</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-agri-primary text-white rounded-full flex items-center justify-center font-bold">1</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">Create Your Profile</h4>
+                                <p class="text-agri-muted">Tell us about your farming experience, preferred crops, and what you're looking for.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-agri-primary text-white rounded-full flex items-center justify-center font-bold">2</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">Browse Available Land</h4>
+                                <p class="text-agri-muted">Search through verified land listings with detailed information about soil, water, and terms.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-agri-primary text-white rounded-full flex items-center justify-center font-bold">3</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">Apply & Connect</h4>
+                                <p class="text-agri-muted">Submit applications and start conversations with landowners to find the perfect match.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Farmer working in green agricultural field with modern equipment -->
+                <div class="order-first md:order-last">
+                    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Farmer working in field" class="w-full rounded-xl shadow-lg">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <!-- Professional handshake between business people in agricultural setting -->
+                <div>
+                    <img src="https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" alt="Business handshake agreement" class="w-full rounded-xl shadow-lg">
+                </div>
+                
+                <!-- For Landowners -->
+                <div>
+                    <h3 class="text-2xl font-bold text-agri-secondary mb-8">For Landowners</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-agri-secondary text-white rounded-full flex items-center justify-center font-bold">1</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">List Your Land</h4>
+                                <p class="text-agri-muted">Upload photos and detailed information about your property, including soil quality and amenities.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-agri-secondary text-white rounded-full flex items-center justify-center font-bold">2</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">Review Applications</h4>
+                                <p class="text-agri-muted">Receive applications from qualified tenant farmers and review their experience and proposals.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-agri-secondary text-white rounded-full flex items-center justify-center font-bold">3</div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900 mb-2">Build Partnerships</h4>
+                                <p class="text-agri-muted">Connect with the right farmers and establish mutually beneficial tenancy agreements.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: HowItWorks -->
+
+    <!-- @COMPONENT: Dashboard Preview -->
+    <section class="py-20 bg-gradient-to-br from-agri-bg to-emerald-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Manage Everything in One Place</h2>
+                <p class="text-xl text-agri-muted max-w-2xl mx-auto">Comprehensive dashboards for both farmers and landowners to track applications, messages, and agreements</p>
+            </div>
+
+            <!-- Farmer Dashboard Preview -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-12">
+                <div class="bg-agri-primary text-white p-6">
+                    <h3 class="text-2xl font-bold mb-2">Farmer Dashboard</h3>
+                    <p class="text-emerald-100">Track your applications and manage your farming partnerships</p>
+                </div>
+                <div class="p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-emerald-50 p-6 rounded-lg">
+                            <div class="text-3xl font-bold text-agri-primary mb-2" data-bind="dashboard.activeApplications">12</div>
+                            <div class="text-agri-muted">Active Applications</div>
+                        </div>
+                        <div class="bg-amber-50 p-6 rounded-lg">
+                            <div class="text-3xl font-bold text-agri-secondary mb-2" data-bind="dashboard.savedListings">8</div>
+                            <div class="text-agri-muted">Saved Listings</div>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <div class="text-3xl font-bold text-blue-600 mb-2" data-bind="dashboard.messages">5</div>
+                            <div class="text-agri-muted">New Messages</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Applications -->
+                    <div class="mb-8">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Recent Applications</h4>
+                        <div class="space-y-3" data-mock="true">
+                            <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                                <div>
+                                    <div class="font-medium text-gray-900">Johnson Family Farm</div>
+                                    <div class="text-sm text-agri-muted">Applied 2 days ago</div>
+                                </div>
+                                <span class="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm">Under Review</span>
+                            </div>
+                            <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                                <div>
+                                    <div class="font-medium text-gray-900">Heritage Valley Land</div>
+                                    <div class="text-sm text-agri-muted">Applied 1 week ago</div>
+                                </div>
+                                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Accepted</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-agri-primary text-white px-6 py-3 rounded-lg hover:bg-emerald-600 transition-colors" data-event="click:browseListings">Browse New Listings</button>
+                        <button class="bg-white text-agri-primary border-2 border-agri-primary px-6 py-3 rounded-lg hover:bg-agri-primary hover:text-white transition-colors" data-event="click:updateProfile">Update Profile</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Landowner Dashboard Preview -->
+            <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                <div class="bg-agri-secondary text-white p-6">
+                    <h3 class="text-2xl font-bold mb-2">Landowner Dashboard</h3>
+                    <p class="text-amber-100">Manage your property listings and tenant applications</p>
+                </div>
+                <div class="p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-amber-50 p-6 rounded-lg">
+                            <div class="text-3xl font-bold text-agri-secondary mb-2" data-bind="dashboard.activeListings">3</div>
+                            <div class="text-agri-muted">Active Listings</div>
+                        </div>
+                        <div class="bg-emerald-50 p-6 rounded-lg">
+                            <div class="text-3xl font-bold text-agri-primary mb-2" data-bind="dashboard.newApplications">24</div>
+                            <div class="text-agri-muted">New Applications</div>
+                        </div>
+                        <div class="bg-teal-50 p-6 rounded-lg">
+                            <div class="text-3xl font-bold text-agri-accent mb-2" data-bind="dashboard.totalAcres">145</div>
+                            <div class="text-agri-muted">Total Acres Listed</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Applications -->
+                    <div class="mb-8">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">Recent Applications</h4>
+                        <div class="space-y-3" data-mock="true">
+                            <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-agri-primary text-white rounded-full flex items-center justify-center font-bold">JM</div>
+                                    <div>
+                                        <div class="font-medium text-gray-900">James Mitchell</div>
+                                        <div class="text-sm text-agri-muted">15 years farming experience • Corn & Soybeans</div>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="bg-red-100 text-red-800 px-3 py-1 rounded-lg text-sm hover:bg-red-200" data-event="click:rejectApplication">Decline</button>
+                                    <button class="bg-agri-primary text-white px-3 py-1 rounded-lg text-sm hover:bg-emerald-600" data-event="click:acceptApplication">Accept</button>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-agri-secondary text-white rounded-full flex items-center justify-center font-bold">SR</div>
+                                    <div>
+                                        <div class="font-medium text-gray-900">Sarah Rodriguez</div>
+                                        <div class="text-sm text-agri-muted">8 years farming experience • Organic Vegetables</div>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="bg-red-100 text-red-800 px-3 py-1 rounded-lg text-sm hover:bg-red-200" data-event="click:rejectApplication">Decline</button>
+                                    <button class="bg-agri-primary text-white px-3 py-1 rounded-lg text-sm hover:bg-emerald-600" data-event="click:acceptApplication">Accept</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="flex flex-wrap gap-4">
+                        <button class="bg-agri-secondary text-white px-6 py-3 rounded-lg hover:bg-amber-500 transition-colors" data-event="click:addListing">Add New Listing</button>
+                        <button class="bg-white text-agri-secondary border-2 border-agri-secondary px-6 py-3 rounded-lg hover:bg-agri-secondary hover:text-white transition-colors" data-event="click:manageListings">Manage Listings</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Dashboard Preview -->
+
+    <!-- @COMPONENT: TestimonialsSection -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">What Our Community Says</h2>
+                <p class="text-xl text-agri-muted max-w-2xl mx-auto">Real stories from farmers and landowners who've found success through AgriConnect</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-agri-bg p-8 rounded-xl" data-mock="true">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-agri-primary text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">MJ</div>
+                        <div>
+                            <div class="font-semibold text-gray-900">Maria Gonzalez</div>
+                            <div class="text-agri-muted">Tenant Farmer</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">"AgriConnect helped me find the perfect 50-acre plot for my organic vegetable farm. The landowner was supportive and the process was transparent from start to finish."</p>
+                    <div class="flex text-agri-secondary mt-4">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+
+                <div class="bg-agri-bg p-8 rounded-xl" data-mock="true">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-agri-secondary text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">RT</div>
+                        <div>
+                            <div class="font-semibold text-gray-900">Robert Thompson</div>
+                            <div class="text-agri-muted">Landowner</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">"As a landowner, I was impressed by the quality of tenant farmers on the platform. Found an experienced corn farmer who takes excellent care of my land."</p>
+                    <div class="flex text-agri-secondary mt-4">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+
+                <div class="bg-agri-bg p-8 rounded-xl" data-mock="true">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-agri-accent text-white rounded-full flex items-center justify-center font-bold text-xl mr-4">DK</div>
+                        <div>
+                            <div class="font-semibold text-gray-900">David Kim</div>
+                            <div class="text-agri-muted">Young Farmer</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">"Just starting out, I couldn't afford to buy land. AgriConnect connected me with a generous landowner who gave me the opportunity to build my farming career."</p>
+                    <div class="flex text-agri-secondary mt-4">
+                        ⭐⭐⭐⭐⭐
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: TestimonialsSection -->
+
+    <!-- @COMPONENT: CallToAction -->
+    <section class="py-20 bg-gradient-to-r from-agri-primary to-emerald-600 text-white">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6">Ready to Grow Together?</h2>
+            <p class="text-xl md:text-2xl mb-8 text-emerald-100 leading-relaxed">Join thousands of farmers and landowners building sustainable agricultural partnerships</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button class="bg-agri-secondary text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-amber-500 transition-colors" data-event="click:getStartedFarmer">Start as Farmer</button>
+                <button class="bg-white text-agri-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors" data-event="click:getStartedLandowner">Start as Landowner</button>
+            </div>
+            <p class="text-sm text-emerald-200 mt-6">No sign-up fees • Secure payments • Trusted community</p>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: CallToAction -->
+
+    <!-- @COMPONENT: Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 bg-agri-primary rounded-lg flex items-center justify-center">
+                            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 8.055V6a2 2 0 00-2-2H9a2 2 0 00-2 2v2.055"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold">AgriConnect</span>
+                    </div>
+                    <p class="text-gray-300 mb-4 max-w-md">Connecting tenant farmers with landowners to build sustainable agricultural partnerships and support farming communities worldwide.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-agri-primary transition-colors" data-mock="true">Twitter</a>
+                        <a href="#" class="text-gray-300 hover:text-agri-primary transition-colors" data-mock="true">Facebook</a>
+                        <a href="#" class="text-gray-300 hover:text-agri-primary transition-colors" data-mock="true">LinkedIn</a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">For Farmers</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-mock="true">Browse Land</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-mock="true">Create Profile</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-mock="true">Success Stories</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-mock="true">Farmer Resources</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">For Landowners</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-mock="true">List Your Land</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-mock="true">Find Farmers</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-mock="true">Pricing Guide</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors" data-mock="true">Legal Resources</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">© 2024 AgriConnect. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm" data-mock="true">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm" data-mock="true">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm" data-mock="true">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <!-- @COMPONENT: MessageModal (Hidden by default) -->
+    <!-- @STATE: isMessageModalOpen:boolean = false -->
+    <div id="messageModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center" data-mock="true">
+        <div class="bg-white rounded-xl max-w-md w-full mx-4 p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold text-gray-900">Send Message</h3>
+                <button class="text-gray-400 hover:text-gray-600" data-event="click:closeMessageModal">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form data-implementation="Should handle message sending via API">
+                <textarea 
+                    placeholder="Type your message here..." 
+                    rows="4" 
+                    class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-agri-primary focus:border-transparent mb-4"
+                    data-mock="true"
+                ></textarea>
+                <div class="flex justify-end space-x-3">
+                    <button type="button" class="px-4 py-2 text-gray-600 hover:text-gray-800" data-event="click:closeMessageModal">Cancel</button>
+                    <button type="submit" class="bg-agri-primary text-white px-6 py-2 rounded-lg hover:bg-emerald-600 transition-colors" data-event="click:sendMessage">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: MessageModal -->
+
+    <script>
+        (function() {
+            // TODO: Implement business logic, API calls, and state management
+            
+            // Simple demo interactions for visual feedback
+            document.addEventListener('DOMContentLoaded', function() {
+                // Handle listing card hover effects
+                const listingCards = document.querySelectorAll('.hover\\:shadow-lg');
+                listingCards.forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        this.style.transform = 'translateY(-2px)';
+                    });
+                    card.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateY(0)';
+                    });
+                });
+
+                // Demo search functionality (visual feedback only)
+                const searchButton = document.querySelector('[data-event="click:handleSearch"]');
+                if (searchButton) {
+                    searchButton.addEventListener('click', function() {
+                        // Visual loading state
+                        this.textContent = 'Searching...';
+                        setTimeout(() => {
+                            this.textContent = 'Search';
+                        }, 1000);
+                    });
+                }
+
+                // Mobile menu toggle (if implemented)
+                const mobileMenuButton = document.querySelector('[data-mobile-menu-button]');
+                if (mobileMenuButton) {
+                    mobileMenuButton.addEventListener('click', function() {
+                        const mobileMenu = document.querySelector('[data-mobile-menu]');
+                        if (mobileMenu) {
+                            mobileMenu.classList.toggle('hidden');
+                        }
+                    });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

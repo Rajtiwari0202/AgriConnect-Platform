@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KrishiConnect - Connecting Farmers & Landowners</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7', 
+                            500: '#059669',
+                            600: '#047857',
+                            700: '#065f46',
+                            900: '#14532d'
+                        },
+                        earth: {
+                            100: '#fef3c7',
+                            500: '#92400e',
+                            600: '#a3560e',
+                            700: '#78350f'
+                        },
+                        harvest: {
+                            400: '#fbbf24',
+                            500: '#d97706',
+                            600: '#b45309'
+                        }
+                    },
+                    fontFamily: {
+                        'hindi': ['Inter', 'Noto Sans Devanagari', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="font-hindi bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
+    <!-- @COMPONENT: Header [navigation, auth, theme toggle] -->
+    <header class="bg-white dark:bg-slate-800 shadow-sm border-b border-gray-200 dark:border-slate-700 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-seedling text-white text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold text-gray-900 dark:text-white">KrishiConnect</span>
+                        <span class="text-xs text-gray-500 dark:text-gray-400">कृषि कनेक्ट</span>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium">Home</a>
+                    <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium">Find Land</a>
+                    <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium">List Property</a>
+                    <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium">Pricing</a>
+                    <a href="#" class="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium">Government Schemes</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="flex items-center space-x-4">
+                    <!-- Language Toggle -->
+                    <button class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                        <span class="text-sm font-medium">हि/EN</span>
+                    </button>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
+                        <i class="fas fa-moon dark:hidden text-lg"></i>
+                        <i class="fas fa-sun hidden dark:inline text-lg"></i>
+                    </button>
+
+                    <!-- Auth Buttons -->
+                    <button class="text-primary-600 dark:text-primary-400 font-medium">Log In</button>
+                    <button class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+                        Get Started
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-500 dark:text-gray-400">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- @COMPONENT: Hero Section [main value proposition, CTAs] -->
+    <section class="relative bg-gradient-to-br from-primary-50 to-harvest-100 dark:from-slate-800 dark:to-slate-900 py-20 overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23059669" fill-opacity="0.1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Content -->
+                <div class="space-y-8">
+                    <div class="space-y-4">
+                        <div class="inline-flex items-center bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 px-3 py-1 rounded-full text-sm font-medium">
+                            <i class="fas fa-leaf mr-2"></i>
+                            Connecting Agriculture Communities
+                        </div>
+                        <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+                            Bridge the Gap Between 
+                            <span class="text-primary-600 dark:text-primary-400">Farmers</span> & 
+                            <span class="text-earth-600 dark:text-earth-400">Landowners</span>
+                        </h1>
+                        <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                            Taking care of agricultural roots back home. Connect with verified landowners, secure fair agreements, and grow your farming business with transparent, region-based pricing.
+                        </p>
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Available across Punjab, Bihar, UP, and 15+ states</span>
+                        </div>
+                    </div>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
+                            <i class="fas fa-search mr-2"></i>
+                            Find Land to Rent
+                        </button>
+                        <button class="bg-white dark:bg-slate-700 hover:bg-gray-50 dark:hover:bg-slate-600 text-gray-900 dark:text-white px-8 py-4 rounded-xl font-semibold text-lg border border-gray-200 dark:border-slate-600 transition-all transform hover:scale-105 shadow-md">
+                            <i class="fas fa-plus mr-2"></i>
+                            List My Property
+                        </button>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="grid grid-cols-3 gap-8 pt-8 border-t border-gray-200 dark:border-slate-700">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-gray-900 dark:text-white" data-bind="stats.totalFarmers">15,000+</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Active Farmers</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-gray-900 dark:text-white" data-bind="stats.totalLand">2,50,000</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Acres Listed</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-gray-900 dark:text-white" data-bind="stats.totalStates">18</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">States Covered</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="relative">
+                    <!-- A panoramic view of Indian farmers working in lush green agricultural fields with traditional farming methods -->
+                    <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=600" alt="Indian farmers working in green agricultural fields" class="rounded-2xl shadow-2xl w-full h-auto" />
+                    
+                    <!-- Floating Cards -->
+                    <div class="absolute -bottom-4 -left-4 bg-white dark:bg-slate-800 rounded-xl shadow-lg p-4 max-w-xs">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center">
+                                <i class="fas fa-handshake text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900 dark:text-white">Agreement Secured</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">5 acres in Punjab</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="absolute -top-4 -right-4 bg-white dark:bg-slate-800 rounded-xl shadow-lg p-4 max-w-xs">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-harvest-100 dark:bg-harvest-900 rounded-full flex items-center justify-center">
+                                <i class="fas fa-rupee-sign text-harvest-600 dark:text-harvest-400"></i>
+                            </div>
+                            <div>
+                                <div class="font-semibold text-gray-900 dark:text-white">Fair Pricing</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">₹2,500/acre/month</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Hero Section -->
+
+    <!-- @COMPONENT: Regional Pricing Section [state-wise pricing display] -->
+    <section class="py-16 bg-white dark:bg-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    Fair, Region-Based Pricing
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Our subscription fees are calculated based on your state's average crop income, ensuring affordability across all regions.
+                </p>
+            </div>
+
+            <!-- @STATE: selectedState:string = 'punjab' -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- State Selector -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Select Your State</h3>
+                    <div class="space-y-2">
+                        <!-- @MAP: states.map(state => ( -->
+                        <button class="w-full text-left p-4 rounded-lg border border-gray-200 dark:border-slate-600 hover:border-primary-500 dark:hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all group" data-state="punjab">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="font-medium text-gray-900 dark:text-white">Punjab</div>
+                                    <div class="text-sm text-gray-500 dark:text-gray-400">पंजाब</div>
+                                </div>
+                                <div class="text-primary-600 dark:text-primary-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </button>
+
+                        <button class="w-full text-left p-4 rounded-lg border border-gray-200 dark:border-slate-600 hover:border-primary-500 dark:hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all group" data-state="bihar">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="font-medium text-gray-900 dark:text-white">Bihar</div>
+                                    <div class="text-sm text-gray-500 dark:text-gray-400">बिहार</div>
+                                </div>
+                                <div class="text-primary-600 dark:text-primary-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </button>
+
+                        <button class="w-full text-left p-4 rounded-lg border border-gray-200 dark:border-slate-600 hover:border-primary-500 dark:hover:border-primary-400 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-all group" data-state="up">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="font-medium text-gray-900 dark:text-white">Uttar Pradesh</div>
+                                    <div class="text-sm text-gray-500 dark:text-gray-400">उत्तर प्रदेश</div>
+                                </div>
+                                <div class="text-primary-600 dark:text-primary-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- @END_MAP -->
+                    </div>
+
+                    <!-- Pricing Calculator Note -->
+                    <div class="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-info-circle text-blue-600 dark:text-blue-400 mt-0.5"></i>
+                            <div class="text-sm">
+                                <div class="font-medium text-blue-900 dark:text-blue-100">How we calculate pricing</div>
+                                <div class="text-blue-700 dark:text-blue-300 mt-1">
+                                    Based on MSP data, regional GDP, and national agricultural surveys to ensure fairness.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing Display -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Punjab Pricing (Selected State) -->
+                    <div class="bg-gradient-to-r from-primary-500 to-primary-600 rounded-xl p-6 text-white">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-bold">Punjab Subscription</h3>
+                            <div class="bg-white/20 px-3 py-1 rounded-full text-sm font-medium">Most Popular</div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-3 gap-6">
+                            <div class="text-center">
+                                <div class="text-sm opacity-90 mb-1">Basic Plan</div>
+                                <div class="text-3xl font-bold" data-bind="pricing.punjab.basic">₹899</div>
+                                <div class="text-sm opacity-90">/month</div>
+                                <div class="text-xs opacity-75 mt-2">For small farmers</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-sm opacity-90 mb-1">Standard Plan</div>
+                                <div class="text-3xl font-bold" data-bind="pricing.punjab.standard">₹1,299</div>
+                                <div class="text-sm opacity-90">/month</div>
+                                <div class="text-xs opacity-75 mt-2">Most common choice</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-sm opacity-90 mb-1">Premium Plan</div>
+                                <div class="text-3xl font-bold" data-bind="pricing.punjab.premium">₹1,799</div>
+                                <div class="text-sm opacity-90">/month</div>
+                                <div class="text-xs opacity-75 mt-2">Priority & analytics</div>
+                            </div>
+                        </div>
+
+                        <!-- Affordability Indicator -->
+                        <div class="mt-6 p-4 bg-white/10 rounded-lg">
+                            <div class="flex items-center justify-between text-sm">
+                                <span>Avg. Annual Farm Income: <span data-bind="economics.punjab.avgIncome">₹3,50,000</span></span>
+                                <span>Our fee: <span class="font-semibold">4.5% of income</span></span>
+                            </div>
+                            <div class="mt-2 bg-white/20 rounded-full h-2">
+                                <div class="bg-white rounded-full h-2 w-[4.5%]"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparison with other states -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 dark:bg-slate-700 p-6 rounded-xl">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Bihar</h4>
+                                <span class="text-sm text-green-600 dark:text-green-400 font-medium">Subsidized Rate</span>
+                            </div>
+                            <div class="text-2xl font-bold text-gray-900 dark:text-white mb-2" data-bind="pricing.bihar.standard">₹499/month</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-300">
+                                Reduced pricing for developing agricultural regions
+                            </div>
+                        </div>
+
+                        <div class="bg-gray-50 dark:bg-slate-700 p-6 rounded-xl">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="font-semibold text-gray-900 dark:text-white">Uttar Pradesh</h4>
+                                <span class="text-sm text-blue-600 dark:text-blue-400 font-medium">Standard Rate</span>
+                            </div>
+                            <div class="text-2xl font-bold text-gray-900 dark:text-white mb-2" data-bind="pricing.up.standard">₹799/month</div>
+                            <div class="text-sm text-gray-600 dark:text-gray-300">
+                                Balanced pricing for diverse agricultural zones
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Government Scheme Integration -->
+                    <div class="bg-gradient-to-r from-harvest-100 to-yellow-100 dark:from-harvest-900/30 dark:to-yellow-900/30 p-6 rounded-xl border border-harvest-200 dark:border-harvest-800">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-8 h-8 bg-harvest-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-government text-white text-sm"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 dark:text-white">Government Scheme Benefits</h4>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4 text-sm">
+                            <div class="space-y-2">
+                                <div class="flex items-center text-gray-700 dark:text-gray-300">
+                                    <i class="fas fa-check text-green-600 dark:text-green-400 mr-2"></i>
+                                    PM-KISAN beneficiaries get 20% discount
+                                </div>
+                                <div class="flex items-center text-gray-700 dark:text-gray-300">
+                                    <i class="fas fa-check text-green-600 dark:text-green-400 mr-2"></i>
+                                    Integrated with Soil Health Card data
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center text-gray-700 dark:text-gray-300">
+                                    <i class="fas fa-check text-green-600 dark:text-green-400 mr-2"></i>
+                                    FPO members get priority listing
+                                </div>
+                                <div class="flex items-center text-gray-700 dark:text-gray-300">
+                                    <i class="fas fa-check text-green-600 dark:text-green-400 mr-2"></i>
+                                    MSP-linked payment calculations
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Regional Pricing Section -->
+
+    <!-- @COMPONENT: Land Listings Section [sample property cards] -->
+    <section class="py-16 bg-gray-50 dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between mb-12">
+                <div>
+                    <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                        Available Agricultural Land
+                    </h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300">
+                        Verified properties ready for farming partnerships
+                    </p>
+                </div>
+                <button class="bg-primary-500 hover:bg-primary-600 text-white px-6 py-3 rounded-lg font-medium transition-colors">
+                    View All Properties
+                </button>
+            </div>
+
+            <!-- Filters -->
+            <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm mb-8">
+                <div class="grid md:grid-cols-4 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">State</label>
+                        <select class="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                            <option>All States</option>
+                            <option>Punjab</option>
+                            <option>Bihar</option>
+                            <option>Uttar Pradesh</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Crop Type</label>
+                        <select class="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                            <option>Any Crop</option>
+                            <option>Wheat</option>
+                            <option>Rice</option>
+                            <option>Sugarcane</option>
+                            <option>Cotton</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Land Size</label>
+                        <select class="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                            <option>Any Size</option>
+                            <option>1-5 Acres</option>
+                            <option>5-10 Acres</option>
+                            <option>10+ Acres</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Budget</label>
+                        <select class="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                            <option>Any Budget</option>
+                            <option>Under ₹2,000/acre</option>
+                            <option>₹2,000-5,000/acre</option>
+                            <option>₹5,000+/acre</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Grid -->
+            <!-- @MAP: properties.map(property => ( -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Property Card 1 -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-lg transition-shadow overflow-hidden group">
+                    <!-- A fertile agricultural field in Punjab with rich soil and irrigation systems -->
+                    <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=240" alt="Agricultural land in Punjab with rich soil" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 px-2 py-1 rounded-full text-xs font-medium">Verified</span>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-map-marker-alt mr-1"></i>
+                                Ludhiana, Punjab
+                            </div>
+                        </div>
+
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2" data-bind="property.title">15 Acres Premium Farmland</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4" data-bind="property.description">
+                            Fertile alluvial soil, canal irrigation, suitable for wheat and rice cultivation. Previous yield: 45 quintals/acre.
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div class="text-center p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">
+                                <div class="text-lg font-semibold text-gray-900 dark:text-white" data-bind="property.size">15</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Acres</div>
+                            </div>
+                            <div class="text-center p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">
+                                <div class="text-lg font-semibold text-gray-900 dark:text-white" data-bind="property.soilType">Alluvial</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Soil Type</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="text-2xl font-bold text-primary-600 dark:text-primary-400" data-bind="property.rent">₹3,500</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">per acre/month</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Security Deposit</div>
+                                <div class="font-semibold text-gray-900 dark:text-white" data-bind="property.deposit">₹21,000</div>
+                            </div>
+                        </div>
+
+                        <!-- Landowner Info -->
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-slate-700">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-gray-600 dark:text-gray-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900 dark:text-white text-sm" data-bind="property.owner.name">Jasbir Singh</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">Landowner</div>
+                                </div>
+                            </div>
+                            <button class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" data-event="click:requestToRent">
+                                Request to Rent
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Card 2 -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-lg transition-shadow overflow-hidden group">
+                    <!-- Indian farmers working on irrigated agricultural land with crops growing -->
+                    <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=240" alt="Irrigated agricultural land with growing crops" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-harvest-100 dark:bg-harvest-900 text-harvest-700 dark:text-harvest-300 px-2 py-1 rounded-full text-xs font-medium">New Listing</span>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-map-marker-alt mr-1"></i>
+                                Patna, Bihar
+                            </div>
+                        </div>
+
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2" data-bind="property.title">8 Acres Organic Ready Land</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4" data-bind="property.description">
+                            Chemical-free for 3 years, well-irrigated, perfect for organic farming. Government certified organic status.
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div class="text-center p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">
+                                <div class="text-lg font-semibold text-gray-900 dark:text-white" data-bind="property.size">8</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Acres</div>
+                            </div>
+                            <div class="text-center p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">
+                                <div class="text-lg font-semibold text-gray-900 dark:text-white" data-bind="property.soilType">Loamy</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Soil Type</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="text-2xl font-bold text-primary-600 dark:text-primary-400" data-bind="property.rent">₹1,800</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">per acre/month</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Security Deposit</div>
+                                <div class="font-semibold text-gray-900 dark:text-white" data-bind="property.deposit">₹10,800</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-slate-700">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-gray-600 dark:text-gray-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900 dark:text-white text-sm" data-bind="property.owner.name">Ravi Kumar</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">Landowner</div>
+                                </div>
+                            </div>
+                            <button class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" data-event="click:requestToRent">
+                                Request to Rent
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Card 3 -->
+                <div class="bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-lg transition-shadow overflow-hidden group">
+                    <!-- Rural Indian agricultural landscape with diverse crops and farming infrastructure -->
+                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=240" alt="Rural agricultural landscape with diverse crops" class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
+                    
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-2 py-1 rounded-full text-xs font-medium">Contract Farming</span>
+                            <div class="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                <i class="fas fa-map-marker-alt mr-1"></i>
+                                Meerut, UP
+                            </div>
+                        </div>
+
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2" data-bind="property.title">12 Acres Mixed Crop Land</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-4" data-bind="property.description">
+                            Suitable for sugarcane, wheat rotation. Connected to sugar mill, established supply chain and buyer network.
+                        </p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-4">
+                            <div class="text-center p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">
+                                <div class="text-lg font-semibold text-gray-900 dark:text-white" data-bind="property.size">12</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Acres</div>
+                            </div>
+                            <div class="text-center p-3 bg-gray-50 dark:bg-slate-700 rounded-lg">
+                                <div class="text-lg font-semibold text-gray-900 dark:text-white" data-bind="property.soilType">Clay</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Soil Type</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <div class="text-2xl font-bold text-primary-600 dark:text-primary-400" data-bind="property.rent">₹2,800</div>
+                                <div class="text-sm text-gray-500 dark:text-gray-400">per acre/month</div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-500 dark:text-gray-400">Security Deposit</div>
+                                <div class="font-semibold text-gray-900 dark:text-white" data-bind="property.deposit">₹16,800</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-200 dark:border-slate-700">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-gray-300 dark:bg-gray-600 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user text-gray-600 dark:text-gray-400 text-sm"></i>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900 dark:text-white text-sm" data-bind="property.owner.name">Suresh Gupta</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">Landowner</div>
+                                </div>
+                            </div>
+                            <button class="bg-primary-500 hover:bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" data-event="click:requestToRent">
+                                Request to Rent
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_MAP -->
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Land Listings Section -->
+
+    <!-- @COMPONENT: Economic Dashboard [affordability metrics, projections] -->
+    <section class="py-16 bg-white dark:bg-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    Economic Impact Dashboard
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Real-time insights into agricultural economics, pricing fairness, and platform sustainability aligned with government data.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Platform Revenue Projections -->
+                <div class="bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 p-6 rounded-xl border border-primary-200 dark:border-primary-800">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Platform Revenue</h3>
+                        <div class="w-10 h-10 bg-primary-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white"></i>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Monthly Subscriptions</span>
+                            <span class="font-semibold text-gray-900 dark:text-white" data-bind="revenue.subscriptions">₹12,50,000</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600 dark:text-gray-400">Transaction Commissions (7%)</span>
+                            <span class="font-semibold text-gray-900 dark:text-white" data-bind="revenue.commissions">₹8,75,000</span>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-primary-200 dark:border-primary-700">
+                            <span class="text-sm font-medium text-gray-900 dark:text-white">Total Monthly Revenue</span>
+                            <span class="text-xl font-bold text-primary-600 dark:text-primary-400" data-bind="revenue.total">₹21,25,000</span>
+                        </div>
+                    </div>
+
+                    <!-- Growth Chart Placeholder -->
+                    <div class="mt-6 p-4 bg-white dark:bg-slate-800 rounded-lg">
+                        <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">6-Month Growth Trend</div>
+                        <div class="h-20 bg-gradient-to-r from-primary-200 to-primary-300 dark:from-primary-800 to-primary-700 rounded-lg flex items-end justify-center">
+                            <span class="text-xs text-primary-800 dark:text-primary-200 mb-2">↗ 15% MoM Growth</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Farmer Income vs Platform Cost -->
+                <div class="bg-gradient-to-br from-harvest-50 to-orange-100 dark:from-harvest-900/20 dark:to-orange-800/20 p-6 rounded-xl border border-harvest-200 dark:border-harvest-800">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Affordability Index</h3>
+                        <div class="w-10 h-10 bg-harvest-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-balance-scale text-white"></i>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Punjab Example -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-900 dark:text-white">Punjab</span>
+                                <span class="text-sm text-green-600 dark:text-green-400 font-medium">4.5% of income</span>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 rounded-lg p-3">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-600 dark:text-gray-400">Avg. Annual Income</span>
+                                    <span class="font-semibold text-gray-900 dark:text-white">₹3,50,000</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-600 dark:text-gray-400">Platform Cost</span>
+                                    <span class="font-semibold text-harvest-600 dark:text-harvest-400">₹15,588/year</span>
+                                </div>
+                                <div class="mt-2 bg-gray-200 dark:bg-slate-600 rounded-full h-2">
+                                    <div class="bg-green-500 rounded-full h-2" style="width: 4.5%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bihar Example -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-900 dark:text-white">Bihar</span>
+                                <span class="text-sm text-green-600 dark:text-green-400 font-medium">3.2% of income</span>
+                            </div>
+                            <div class="bg-white dark:bg-slate-800 rounded-lg p-3">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-600 dark:text-gray-400">Avg. Annual Income</span>
+                                    <span class="font-semibold text-gray-900 dark:text-white">₹1,85,000</span>
+                                </div>
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-gray-600 dark:text-gray-400">Platform Cost (Subsidized)</span>
+                                    <span class="font-semibold text-harvest-600 dark:text-harvest-400">₹5,988/year</span>
+                                </div>
+                                <div class="mt-2 bg-gray-200 dark:bg-slate-600 rounded-full h-2">
+                                    <div class="bg-green-500 rounded-full h-2" style="width: 3.2%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Government Data Integration -->
+                <div class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900/20 dark:to-indigo-800/20 p-6 rounded-xl border border-blue-200 dark:border-blue-800">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Government Data</h3>
+                        <div class="w-10 h-10 bg-blue-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-government text-white"></i>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg">
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Latest MSP (Wheat)</div>
+                            <div class="text-lg font-bold text-gray-900 dark:text-white" data-bind="government.msp.wheat">₹2,125/quintal</div>
+                            <div class="text-xs text-green-600 dark:text-green-400">↗ 5.4% from last year</div>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg">
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">Agriculture GVA Growth</div>
+                            <div class="text-lg font-bold text-gray-900 dark:text-white" data-bind="government.gva.growth">3.8%</div>
+                            <div class="text-xs text-blue-600 dark:text-blue-400">Source: Economic Survey 2024</div>
+                        </div>
+
+                        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg">
+                            <div class="text-sm text-gray-600 dark:text-gray-400 mb-1">PM-KISAN Beneficiaries</div>
+                            <div class="text-lg font-bold text-gray-900 dark:text-white" data-bind="government.pmkisan.beneficiaries">11.2 Cr</div>
+                            <div class="text-xs text-gray-500 dark:text-gray-400">Eligible for 20% discount</div>
+                        </div>
+                    </div>
+
+                    <!-- Data Source Disclaimer -->
+                    <div class="mt-4 p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                        <div class="text-xs text-blue-800 dark:text-blue-200">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            Data sourced from Ministry of Agriculture, Economic Survey 2024, and State Agricultural Statistics
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Metrics Summary -->
+            <div class="mt-12 bg-gray-50 dark:bg-slate-700 p-8 rounded-xl">
+                <div class="text-center mb-8">
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Platform Impact Summary</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Our commitment to fair, data-driven agricultural economics</p>
+                </div>
+
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-primary-600 dark:text-primary-400 mb-2" data-bind="impact.farmers">15,000+</div>
+                        <div class="text-sm text-gray-600 dark:text-gray-300">Farmers Empowered</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-harvest-600 dark:text-harvest-400 mb-2" data-bind="impact.landConnected">2,50,000</div>
+                        <div class="text-sm text-gray-600 dark:text-gray-300">Acres Connected</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-green-600 dark:text-green-400 mb-2" data-bind="impact.avgAffordability">4.2%</div>
+                        <div class="text-sm text-gray-600 dark:text-gray-300">Avg. Cost/Income Ratio</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2" data-bind="impact.satisfaction">96%</div>
+                        <div class="text-sm text-gray-600 dark:text-gray-300">Farmer Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Economic Dashboard -->
+
+    <!-- @COMPONENT: Registration/Auth Section [dual system for farmers/landowners] -->
+    <section class="py-16 bg-gradient-to-br from-gray-50 to-primary-50 dark:from-slate-900 dark:to-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    Join KrishiConnect Today
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-300">
+                    Choose your role and start building agricultural partnerships
+                </p>
+            </div>
+
+            <!-- Role Selection -->
+            <!-- @STATE: selectedRole:string = 'farmer' -->
+            <div class="flex justify-center mb-8">
+                <div class="bg-white dark:bg-slate-800 p-2 rounded-xl shadow-sm border border-gray-200 dark:border-slate-700">
+                    <button class="px-6 py-3 rounded-lg font-medium transition-all bg-primary-500 text-white" data-role="farmer">
+                        <i class="fas fa-user-tie mr-2"></i>
+                        I'm a Farmer
+                    </button>
+                    <button class="px-6 py-3 rounded-lg font-medium transition-all text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white" data-role="landowner">
+                        <i class="fas fa-home mr-2"></i>
+                        I'm a Landowner
+                    </button>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-slate-700">
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Farmer Registration</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Create your account and start connecting with landowners</p>
+                </div>
+
+                <form class="space-y-6" data-implementation="Should validate form before submission">
+                    <!-- Personal Information -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Full Name</label>
+                            <input type="text" placeholder="Enter your full name" class="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500" data-mock="true" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
+                            <input type="tel" placeholder="+91 XXXXX XXXXX" class="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500" data-mock="true" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+                        <input type="email" placeholder="your.email@example.com" class="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500" data-mock="true" />
+                    </div>
+
+                    <!-- Location Information -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">State</label>
+                            <select class="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                <option>Select State</option>
+                                <option>Punjab</option>
+                                <option>Bihar</option>
+                                <option>Uttar Pradesh</option>
+                                <option>Haryana</option>
+                                <option>Rajasthan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">District</label>
+                            <select class="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                <option>Select District</option>
+                                <option>Ludhiana</option>
+                                <option>Amritsar</option>
+                                <option>Jalandhar</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Farming Information -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Farming Experience</label>
+                            <select class="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                <option>Select Experience</option>
+                                <option>Less than 2 years</option>
+                                <option>2-5 years</option>
+                                <option>5-10 years</option>
+                                <option>10+ years</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Preferred Crops</label>
+                            <select multiple class="w-full p-3 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
+                                <option>Wheat</option>
+                                <option>Rice</option>
+                                <option>Sugarcane</option>
+                                <option>Cotton</option>
+                                <option>Maize</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Government Schemes -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Government Scheme Benefits</label>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="pm-kisan" class="w-4 h-4 text-primary-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-primary-500" />
+                                <label for="pm-kisan" class="ml-3 text-sm text-gray-700 dark:text-gray-300">
+                                    I am a PM-KISAN beneficiary (20% discount on subscription)
+                                </label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="fpo-member" class="w-4 h-4 text-primary-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-primary-500" />
+                                <label for="fpo-member" class="ml-3 text-sm text-gray-700 dark:text-gray-300">
+                                    I am a member of FPO/Producer Company (Priority listing)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Regional Pricing Display -->
+                    <div class="bg-primary-50 dark:bg-primary-900/20 p-4 rounded-lg border border-primary-200 dark:border-primary-800">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <i class="fas fa-calculator text-primary-600 dark:text-primary-400"></i>
+                            <h4 class="font-medium text-gray-900 dark:text-white">Your Estimated Subscription Cost</h4>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-4 text-sm">
+                            <div class="text-center">
+                                <div class="font-semibold text-gray-900 dark:text-white">Basic Plan</div>
+                                <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">₹899</div>
+                                <div class="text-gray-600 dark:text-gray-400">/month</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-semibold text-gray-900 dark:text-white">Standard Plan</div>
+                                <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">₹1,299</div>
+                                <div class="text-gray-600 dark:text-gray-400">/month</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="font-semibold text-gray-900 dark:text-white">Premium Plan</div>
+                                <div class="text-2xl font-bold text-primary-600 dark:text-primary-400">₹1,799</div>
+                                <div class="text-gray-600 dark:text-gray-400">/month</div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-xs text-blue-700 dark:text-blue-300">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            Pricing based on Punjab agricultural income data. Eligible for government scheme discounts.
+                        </div>
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <input type="checkbox" id="terms" class="w-4 h-4 text-primary-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-primary-500 mt-1" />
+                            <label for="terms" class="ml-3 text-sm text-gray-700 dark:text-gray-300">
+                                I agree to the <button type="button" class="text-primary-600 dark:text-primary-400 hover:underline font-medium">Terms & Conditions</button> 
+                                and <button type="button" class="text-primary-600 dark:text-primary-400 hover:underline font-medium">Privacy Policy</button>
+                            </label>
+                        </div>
+                        <div class="flex items-start">
+                            <input type="checkbox" id="pricing-consent" class="w-4 h-4 text-primary-600 bg-gray-100 dark:bg-slate-600 border-gray-300 dark:border-slate-500 rounded focus:ring-primary-500 mt-1" />
+                            <label for="pricing-consent" class="ml-3 text-sm text-gray-700 dark:text-gray-300">
+                                I understand and consent to region-based subscription pricing, commission structure (5-10% on transactions), 
+                                and auto-renewal terms as explained in our Terms & Conditions.
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Buttons -->
+                    <div class="space-y-4">
+                        <button type="submit" class="w-full bg-primary-500 hover:bg-primary-600 text-white py-4 rounded-lg font-semibold text-lg transition-colors" data-event="click:handleRegistration">
+                            Create Farmer Account
+                        </button>
+                        
+                        <!-- Social Login -->
+                        <div class="relative">
+                            <div class="absolute inset-0 flex items-center">
+                                <div class="w-full border-t border-gray-300 dark:border-slate-600"></div>
+                            </div>
+                            <div class="relative flex justify-center text-sm">
+                                <span class="px-2 bg-white dark:bg-slate-800 text-gray-500 dark:text-gray-400">Or continue with</span>
+                            </div>
+                        </div>
+
+                        <button type="button" class="w-full bg-white dark:bg-slate-700 hover:bg-gray-50 dark:hover:bg-slate-600 text-gray-900 dark:text-white py-3 rounded-lg font-medium border border-gray-300 dark:border-slate-600 transition-colors flex items-center justify-center" data-event="click:handleGoogleAuth">
+                            <i class="fab fa-google mr-3 text-red-500"></i>
+                            Continue with Google
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Registration/Auth Section -->
+
+    <!-- @COMPONENT: Footer [links, contact, legal] -->
+    <footer class="bg-gray-900 dark:bg-black text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 bg-primary-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-seedling text-white text-lg"></i>
+                        </div>
+                        <div>
+                            <div class="text-xl font-bold">KrishiConnect</div>
+                            <div class="text-sm text-gray-400">कृषि कनेक्ट</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 text-sm mb-4">
+                        Taking care of agricultural roots back home. Connecting farmers and landowners across India with fair, transparent partnerships.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Find Land</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">List Property</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Pricing Plans</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Success Stories</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Help Center</a></li>
+                    </ul>
+                </div>
+
+                <!-- Government & Legal -->
+                <div>
+                    <h4 class="font-semibold mb-4">Legal & Compliance</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Terms & Conditions</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Refund Policy</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Government Schemes</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition-colors">Data Protection</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Support -->
+                <div>
+                    <h4 class="font-semibold mb-4">Contact & Support</h4>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-phone text-primary-400"></i>
+                            <span class="text-gray-300">1800-123-KRISHI</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-envelope text-primary-400"></i>
+                            <span class="text-gray-300">support@krishiconnect.in</span>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <i class="fas fa-map-marker-alt text-primary-400 mt-1"></i>
+                            <span class="text-gray-300">
+                                Agricultural Innovation Hub<br>
+                                New Delhi, India 110001
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row items-center justify-between">
+                <div class="text-sm text-gray-400 mb-4 md:mb-0">
+                    © 2024 KrishiConnect. All rights reserved. | Reg. No: U74999DL2024PTC123456
+                </div>
+                <div class="flex items-center space-x-6 text-sm">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-shield-alt text-green-500"></i>
+                        <span class="text-gray-400">Secured by Stripe</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-certificate text-harvest-500"></i>
+                        <span class="text-gray-400">Government Verified</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <!-- Scripts -->
+    <script>
+        // TODO: Implement business logic, API calls, or state management
+        
+        (function() {
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    document.documentElement.classList.toggle('dark');
+                    // TODO: Save theme preference to localStorage
+                });
+            }
+
+            // State/Role selection functionality
+            const roleButtons = document.querySelectorAll('[data-role]');
+            roleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    roleButtons.forEach(b => b.classList.remove('bg-primary-500', 'text-white'));
+                    roleButtons.forEach(b => b.classList.add('text-gray-600', 'dark:text-gray-300'));
+                    
+                    this.classList.add('bg-primary-500', 'text-white');
+                    this.classList.remove('text-gray-600', 'dark:text-gray-300');
+                    
+                    // TODO: Update form fields based on selected role
+                });
+            });
+
+            // State pricing selection
+            const stateButtons = document.querySelectorAll('[data-state]');
+            stateButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // TODO: Update pricing display based on selected state
+                    // TODO: Fetch state-specific pricing from API
+                });
+            });
+
+            // Mock form submission handlers
+            document.addEventListener('click', function(e) {
+                if (e.target.hasAttribute('data-event')) {
+                    e.preventDefault();
+                    const event = e.target.getAttribute('data-event');
+                    console.log('Mock event triggered:', event);
+                    
+                    // TODO: Implement actual event handlers
+                    // - handleRegistration: validate form, create user account
+                    // - handleGoogleAuth: integrate OAuth authentication
+                    // - requestToRent: create rental request, send notifications
+                }
+            });
+
+            // Initialize tooltips and interactive elements
+            // TODO: Add proper form validation
+            // TODO: Implement real-time pricing calculations
+            // TODO: Add Socket.IO for real-time messaging
+            
+        })();
+    </script>
+</body>
+</html>
