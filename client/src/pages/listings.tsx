@@ -140,19 +140,24 @@ export default function Listings() {
 
               <div>
                 <Label htmlFor="irrigationType">Irrigation</Label>
-                <Select value={filters.irrigationType} onValueChange={(value) => handleFilterChange("irrigationType", value)} data-testid="select-filter-irrigation">
-                  <SelectTrigger>
-                    <SelectValue placeholder="Any Irrigation" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="">Any Irrigation</SelectItem>
-                    {IRRIGATION_TYPES.map((irrigation) => (
-                      <SelectItem key={irrigation} value={irrigation}>
-                        {irrigation}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <Select
+  value={filters.irrigationType}
+  onValueChange={(value) => handleFilterChange("irrigationType", value)}
+  data-testid="select-filter-irrigation"
+>
+  <SelectTrigger>
+    <SelectValue placeholder="Any Irrigation" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="all">Any Irrigation</SelectItem>
+    {IRRIGATION_TYPES.map((irrigation) => (
+      <SelectItem key={irrigation} value={irrigation}>
+        {irrigation}
+      </SelectItem>
+    ))}
+  </SelectContent>
+</Select>
+
               </div>
 
               <div>
